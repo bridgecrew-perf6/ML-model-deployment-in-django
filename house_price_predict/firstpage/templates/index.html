@@ -1,0 +1,165 @@
+
+<!-- Bangalore House Price Predictor -->
+<!DOCTYPE html>
+{% load static %}
+<html >
+<head>
+  <meta charset="UTF-8">
+  <title>Bangalore House Price Predictor ML App</title>
+
+  <style>
+  
+      body {
+      background-image: url("{% static 'images/house3.jpg' %}");
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      background-size: cover;
+    }
+
+    h1   {color: red;}  /* CSS code for heading h1 */
+    p   {color: yellow;}  /* CSS code for heading h1 */
+
+    /* CSS code for button */
+    .button_css {
+    color: #494949 !important;
+    text-transform: uppercase;
+    text-decoration: none;
+    background: #ffffff;
+    padding: 20px;
+    border: 4px solid #494949 !important;
+    display: inline-block;
+    transition: all 0.4s ease 0s;
+    }
+    
+    .button_css:hover {
+    color: #ffffff !important;
+    background: #f6b93b;
+    border-color: #f6b93b !important;
+    transition: all 0.4s ease 0s;
+    }
+
+    a {color: rgb(199, 228, 38);}
+    
+    .footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: #203864;
+  color: white;
+  text-align: center;
+  
+  /* unvisited link */ 
+  a:link { color: White; } 
+  /* visited link */ 
+  a:visited { color: green; }
+}   
+  </style>
+
+</head>
+
+<body>
+  <!-- Show Oxstandhard Univercity Banner-->
+  <div>
+    <img src="{% static 'images/house banner.png' %}" class="w3-border w3-padding" alt="VR TECHNICAL" style="width:100%">
+  </div>
+
+  <div class="login">
+     
+    <!-- Form Get input to predict Marks-->
+    <center>
+
+        <form method="post" enctype="multipart/form-data" action="predict">
+        <h1>*Enter the Information of House to Predict the Price*</h1>
+        {% csrf_token %}
+        <input align="center" type="number" name="bath" placeholder="Bathrooms"  width="48" height="10" step=".01" /><br>
+        <input align="center" type="number" name="balcony" placeholder="Balcony"  width="48" height="10" step=".01" /><br>
+        <input align="center" type="number" name="total_sqft_int" placeholder="Total Squre Foot"  width="48" height="10" step=".01"/><br>
+        <input align="center" type="number" name="bhk" placeholder="BHK"  width="48" height="10" step=".01"/><br>
+        <input align="center" type="number" name="price_per_sqft" placeholder="Price Per Squre Foot"  width="48" height="10" step=".01" /><br>
+        <!-- <input type="text" name="area_type" placeholder="Area Type"/><br> -->
+        <select name="area_type" aria-label="Default area Type">
+          <option selected>select Area Type</option>
+          <option value="Plot  Area">Plot  Area</option>
+          <option value="Built-up  Area">Built-up  Area</option>
+          <option value="Super built-up  Area">Super built-up  Area</option>
+        </select><br> 
+        <!-- name="availability" placeholder="House Availability"  -->
+        <select name="availability" aria-label="Default availability">
+          <option selected>select House Availability </option>
+          <option value="Plot  Area">Ready To Move</option>
+        </select><br>
+        <!--  name="location"          -->
+        <select name="location" aria-label="Default location">
+          <option selected>select Locatiion</option>
+          <option value="Whitefield">Whitefield</option>
+          <option value="Lingadheeranahalli">Lingadheeranahalli</option>
+          <option value="Sarjapur  Road">Sarjapur  Road</option>
+          <option value="Electronic City">Electronic City</option>
+          <option value="Marathahalli">Marathahalli</option>
+          <option value="Haralur Road">Haralur Road</option>
+          <option value="Raja Rajeshwari Nagar">Raja Rajeshwari Nagar</option>
+          <option value="Hennur Road">Hennur Road</option>
+          <option value="Bannerghatta Road">Bannerghatta Road</option>
+          <option value="Uttarahalli">Uttarahalli</option>
+          <option value="Thanisandra">Thanisandra</option>
+          <option value="Electronic City Phase II">Electronic City Phase II</option>
+          <option value="Hebbal">Hebbal</option>
+          <option value="7th Phase JP Nagar">7th Phase JP Nagar</option>
+          <option value="Kanakpura Road">Kanakpura Road</option>
+          <option value="KR Puram">KR Puram</option>
+          <option value="Sarjapur">Sarjapur</option>
+          <option value="Rajaji Nagar">Rajaji Nagar</option>
+          <option value="Kothanur">Kothanur</option>
+          <option value="Chandapura">Chandapura</option>
+          <option value="HSR Layout">HSR Layoutr</option>
+          <option value="Ramamurthy Nagar">Ramamurthy Nagar</option>
+          <option value="Hennur">Hennur</option>
+          <option value="Ramagondanahalli">Ramagondanahalli</option>
+          <option value="Kaggadasapura">Kaggadasapura</option>
+          <option value="Old Airport Road">Old Airport Road</option>
+          <option value="Indira Nagar">Indira Nagar</option>
+          <option value="Sahakara Nagar">Sahakara Nagar</option>
+          <option value="Hosa Road">Hosa Road</option>
+          <option value="Green Glen Layout">Green Glen Layout</option>
+          <option value="Rachenahalli">Rachenahalli</option>
+          <option value="Old Madras Road">Old Madras Road</option>
+          <option value="Kudlu Gate">Kudlu Gate</option>
+          <option value="Dodda Nekkundi">Dodda Nekkundi</option>
+          <option value="Lakshminarayana Pura">Lakshminarayana Pura</option>
+          <option value="TC Palaya">TC Palaya</option>
+          <option value="Frazer Town">Frazer Town</option>
+          <option value="5th Phase JP Nagar">5th Phase JP Nagar</option>
+          <option value="Kengeri Satellite Town">Kengeri Satellite Town</option>
+          <option value="Mahadevpura">Mahadevpura</option>
+          <option value="Tumkur Road">Tumkur Road</option>
+          <option value="Subramanyapura">Subramanyapura</option>
+        </select>
+ 
+        <br>
+         -
+        <br>
+         
+        <!-- Show button -->
+        <div class="button_cont" align="center"><a class="button_css" href="http://vrtechnical.onlinewebshop.net/" target="_blank" rel="nofollow noopener">
+            <button type="submit" class="btn btn-primary btn-block btn-large"><strong>Predict House Price</strong></button></a>
+        </div>
+         
+    </form>
+    </center>
+    
+   <!-- Show predicted output using ML model --> 
+   <div>
+       <center>
+   <h2>{{price_text}} {{ prediction_text }} </h2>
+       </center>
+   </div>
+ 
+ </div>
+<div class="footer">
+  <p>
+      <a href="http://vrtechnical.onlinewebshop.net/">VR TECHNICAL</a>
+  </p>    
+</div>
+</body>
+</html>
